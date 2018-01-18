@@ -36,9 +36,16 @@ function delayedFadeIn(div, range) {
 }
 
 function fadeAllOut(el, group) {
+
   // Your solution here
   group.forEach(div => {
-    delayedFadeOut(div)
+    if (div === el) {
+      setTimeout(() => {
+        fadeOut(div);
+      }, 150)
+    } else {
+      delayedFadeOut(div)
+    }
   })
 }
 
