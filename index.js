@@ -27,24 +27,41 @@ function transitionPage(el, groupOut, groupIn) {
 
 function delayedFadeOut(div, range) {
   // Your solution here
-  fadeOut(div)
+  setTimeout(() => {
+    fadeOut(div)
+  }, range)
 }
 
 function delayedFadeIn(div, range) {
   // Your solution here
-  fadeIn(div)
+  setTimeout(() => {
+    fadeIn(div)
+  }, range)
 }
 
 function fadeAllOut(el, group) {
   // Your solution here
-  group.forEach(div => {
-    delayedFadeOut(div)
+  function shuffle(a) {
+    for (let i = a.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [a[i], a[j]] = [a[j], a[i]];
+    }
+    return a;
+}
+
+  let filterGroup = group.slice(0).filter(function(a) {
+    return a !== el
   })
+  let i = 100
+  shuffle(filterGroup).forEach(div => {
+    delayedFadeOut(div,i+=500)
+  })
+  delayedFadeOut(el,i + 500)
 }
 
 function fadeAllIn(group) {
   // Your solution here
   group.forEach(div => {
-    delayedFadeIn(div)
+    delayedFadeIn(div,1700)
   })
 }
